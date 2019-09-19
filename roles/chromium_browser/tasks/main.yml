@@ -1,0 +1,19 @@
+---
+# tasks file for chromium_browser
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+
+- name: add ppa repository
+  apt_repository:
+    repo: 'ppa:canonical-chromium-builds/stage'
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: install chromium
+  apt:
+    name: chromium-browser
+    state: present
+  become: yes
+
